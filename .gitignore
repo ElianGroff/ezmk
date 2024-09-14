@@ -1,4 +1,4 @@
 .pypirc
-.MANIFEST.in
-.pyproject.toml
+MANIFEST.in
+pyproject.toml
 setup.py
