@@ -2,3 +2,4 @@
 MANIFEST.in
 pyproject.toml
 setup.py
+.venv
