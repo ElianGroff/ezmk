@@ -1,5 +1,6 @@
 # Easy Mark (ezmk)
-Easy-to-use color coordination terminal library with simple custmization & function binding.
+Easy-to-use color coordination terminal library with simple customization & function binding.
+![image](https://github.com/user-attachments/assets/c89e9334-adce-444b-9b98-6c7a127e2206)
 
 Use now with `pip install ezmk`
 
@@ -14,7 +15,7 @@ Use the `#` key to specify the background color, and use the `~` key to specify 
 
 You can add multiple modifiers if you indicate their end with a space like `mark("#m^b~u working text!")`. Using `mark("#m ^b ~u failed text!")` will only interpret the first modifier. 
 
-To print a simple and noticeable message to the console simply fire the `mark()` function without arguments.
+To print a simple and noticeable message to the console, fire the `mark()` function without arguments.
 
 #### Text Foreground and Background Colors
 `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, `gray`, `light-red`/`lr`, `light-green`/`lg`, `light-yellow`/`ly`, `light-blue`/`lb`, `light-magenta`/`lm`, `light-cyan`/`lc`, `light-white`/`lw`
@@ -37,7 +38,7 @@ You can specify presets in configuration, allowing you to use a key(activation s
 To configure, create `ezmk.cfg` file in the project directory. 
 
 - `ping:string` What's printed to the console when `mark()` when fired without any arguments.
-- `debug:bool` If set to true, print's to terminal the raw interpretation of each mark statement.
+- `debug:bool` If set to true, print the raw interpretation of each mark statement to terminal.
 - `presets:dict` Custom keys that load configured format modifiers. Defaults include(to change default either override or list in blacklist):
     - `!` as `~b^r#y`
     - `$` as `^lg#g`
