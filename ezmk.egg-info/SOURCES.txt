@@ -1,0 +1,14 @@
+LICENCE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+ezmk/__init__.py
+ezmk/constants.py
+ezmk/easymark.py
+ezmk.egg-info/PKG-INFO
+ezmk.egg-info/SOURCES.txt
+ezmk.egg-info/dependency_links.txt
+ezmk.egg-info/requires.txt
+ezmk.egg-info/top_level.txt
+tests/test_easymark.py

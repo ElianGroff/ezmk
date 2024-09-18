@@ -47,18 +47,18 @@ def mark(*args, **kwargs):
         func, func_args, func_kwargs = config['default_bind']
         func(*func_args, **func_kwargs)
 
-    inter_strings = []
+    inter_args = []
 
     # Interprets the given strings one at a time
-    for string in args:
-        inter_string = interpret_mark(string)
-        inter_strings.append(inter_string)
+    for arg in args:
+        inter_arg = interpret_mark(f'{arg}')
+        inter_args.append(inter_arg)
 
         #& Used to expose the interpreted string's modification codes
         #&print(inter_string.replace(r"[", '||'))
 
     # Prints the interpreted strings
-    print(*inter_strings, **kwargs)
+    print(*inter_args, **kwargs)
     
 
 # Loads the configuration file and overrides the default configuration
@@ -132,7 +132,7 @@ def get_modifiers_from_string(string) -> tuple[list, int]:
         kwargs = binded_func[2]
         
         binded_func[0](*args, **kwargs)
-
+    
     # For each token without bind type and not in the blacklist, add the appropriate modifier
     for token in [token for token in tokens if (token['type'] != '@' and (token['type'] + token['value'] not in config["blacklist"]))]:
         #&print('XX', config["blacklist"], token)
@@ -195,7 +195,7 @@ def get_preset_tokens(string) -> tuple[list, int]:
         idx += 1
 
         # If the current progressed value is a valid preset
-        if match := could_be(config["presets"].keys(), string[:idx]): #todo exclude blacklist
+        if match := could_be(config["presets"].keys(), string[:idx]):
             # If the preset is not in the blacklist
             if match not in config["blacklist"]:
                 last_matching = match
