@@ -1,4 +1,4 @@
-# EZMK - Easy Mark
+# Easy Mark (ezmk)
 Easy-to-use color coordination terminal library with simple custmization & function binding.
 
 Use now with `pip install ezmk`
@@ -17,10 +17,10 @@ You can add multiple modifiers if you indicate their end with a space like `mark
 To print a simple and noticeable message to the console simply fire the `mark()` function without arguments.
 
 #### Text Foreground and Background Colors
-`black` • `red` • `green` • `yellow` • `blue` • `magenta` • `cyan` • `white` • `gray` • `light-red`/`lr` • `light-green`/`lg` • `light-yellow`/`ly` • `light-blue`/`lb` • `light-magenta`/`lm` • `light-cyan`/`lc` • `light-white`/`lw`
+`black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, `gray`, `light-red`/`lr`, `light-green`/`lg`, `light-yellow`/`ly`, `light-blue`/`lb`, `light-magenta`/`lm`, `light-cyan`/`lc`, `light-white`/`lw`
 
 #### Text Style Effects
-`bold`/`b` • `dim`/`d` • `italic`/`i` • `underline`/`u` • `blink`/`bl` • `reverse`/`r` • `hidden`/`r` • `strikethrough`/`r`
+`bold`/`b`, `dim`/`d`, `italic`/`i`, `underline`/`u`, `blink`/`bl`, `reverse`/`r`, `hidden`/`r`, `strikethrough`/`r`
 
 ## bind(func, activation_string, args=(args), kwargs=(kwargs))
 
@@ -37,6 +37,7 @@ You can specify presets in configuration, allowing you to use a key(activation s
 To configure, create `ezmk.cfg` file in the project directory. 
 
 - `ping:string` What's printed to the console when `mark()` when fired without any arguments.
+- `debug:bool` If set to true, print's to terminal the raw interpretation of each mark statement.
 - `presets:dict` Custom keys that load configured format modifiers. Defaults include(to change default either override or list in blacklist):
     - `!` as `~b^r#y`
     - `$` as `^lg#g`

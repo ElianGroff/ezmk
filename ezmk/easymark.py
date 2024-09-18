@@ -31,35 +31,18 @@ def bind(func, key=None, **kwargs):
 
 
 # Exposed function for printing text to the console
-def mark(*args, **kwargs): 
+def mark(*args, **kwargs):
     global config
-    global keys
 
-    if not config or not keys:
-        raise RuntimeError("Configuration or keys are missing!")
+    interpreted_string = get_interpreted_print(*args, **kwargs)
 
-    # If no arguments are provided or kewword arguments are provided, the ping is printed
-    if not args and not kwargs:
-        ping()
+    if not interpreted_string: return
 
-    # If a default bind is set, it is executed
-    if config['default_bind']:
-        func, func_args, func_kwargs = config['default_bind']
-        func(*func_args, **func_kwargs)
+    if config['debug']:
+        print(repr(interpreted_string))
 
-    inter_args = []
+    print(interpreted_string, **kwargs)
 
-    # Interprets the given strings one at a time
-    for arg in args:
-        inter_arg = interpret_mark(f'{arg}')
-        inter_args.append(inter_arg)
-
-        #& Used to expose the interpreted string's modification codes
-        #&print(inter_string.replace(r"[", '||'))
-
-    # Prints the interpreted strings
-    print(*inter_args, **kwargs)
-    
 
 # Loads the configuration file and overrides the default configuration
 def load_config():
@@ -78,16 +61,48 @@ def load_config():
                     config[key].extend(v for v in value if v not in config[key])
                 elif key == 'ping' and isinstance(value, str):
                         config[key] = value
+                elif key == 'debug' and isinstance(value, bool):
+                        config[key] = value
 
     #&Prints the config to console on import
     #&print("XX", config)
 
 
-# Prints the interpreted default ping
-def ping():
+# Interprets all the arguments and returns the interpreted string
+def get_interpreted_print(*args, **kwargs): 
     global config
-    mark = interpret_mark(config['ping'])
-    print(mark) 
+    global keys
+
+    if not config or not keys:
+        raise RuntimeError("Configuration or keys are missing!")
+
+    # If no arguments are provided, the ping is printed
+    if not args:
+        return interpret_mark(config['ping'])
+
+    # If a default bind is set, it is executed
+    if config['default_bind']:
+        func, func_args, func_kwargs = config['default_bind']
+        func(*func_args, **func_kwargs)
+
+    sep = ' '
+    if kwargs.get('sep'): 
+        sep = kwargs.get('sep')    
+    
+    inter_args = ''
+
+    # Interprets the given strings one at a time
+    for arg in args:
+        is_string = isinstance(arg, str)
+        
+        if is_string and arg and arg and not not arg.strip(): #^ ik this is goofy ahh ahh if statement
+            inter_mark = interpret_mark(arg)
+            #&print('XX', inter_mark)
+            inter_args = f'{inter_args}\033[0m{sep}{inter_mark}'
+        else:
+            inter_args = f'{inter_args}{sep}{arg}'
+    
+    return inter_args + '\033[0m'
 
 
 # Interprets the given string and returns a string with the correct modifiers prior to it and a reset escape key at the end
@@ -105,7 +120,7 @@ def interpret_mark(string) -> str:
         string = modifier + string
 
     # Returns the string with the reset escape key
-    return string + f"\033[0m"
+    return string 
 
 
 # Returns a list of modifiers and the length of the activation string
@@ -193,15 +208,12 @@ def get_preset_tokens(string) -> tuple[list, int]:
 
     while idx < len(string):
         idx += 1
+        cur_value = string[:idx]
 
         # If the current progressed value is a valid preset
-        if match := could_be(config["presets"].keys(), string[:idx]):
-            # If the preset is not in the blacklist
-            if match not in config["blacklist"]:
-                last_matching = match
-            continue
+        if cur_value in config["presets"].keys() and cur_value not in config["blacklist"]:
+            last_matching = cur_value
 
-        break
 
     # If no preset was found, return None
     if not last_matching:
@@ -213,7 +225,7 @@ def get_preset_tokens(string) -> tuple[list, int]:
     # Get the tokens from the activation string
     tokens, _  = get_tokens(class_value + " ")
 
-    return tokens, idx - 1
+    return tokens, len(last_matching)
 
 
 # Returns the first item in the list that starts with the value, else False

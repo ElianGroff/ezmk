@@ -6,3 +6,4 @@ setup.py
 archive
 build
 dist
+ezmk.egg-info 

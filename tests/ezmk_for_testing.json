@@ -1,6 +1,8 @@
 {
     "ping" : "Plain text, configuration overrides default ping.",
-   
+
+    "debug" : true,
+
     "presets" : {
         "prst_tst " : "~i#w^r"
     },

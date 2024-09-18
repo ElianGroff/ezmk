@@ -5,6 +5,7 @@ CONFIG_FILE_NAME = "ezmk.json"
 DEFAULT_CONFIG = {
     "ping" :  "#bla^m~b  ⚠︎ ⚠︎ ⚠︎   Ｍ Ａ Ｒ Ｋ   ⚠︎ ⚠︎ ⚠︎   Ｍ Ａ Ｒ Ｋ   ⚠︎ ⚠︎ ⚠︎   Ｍ Ａ Ｒ Ｋ   ⚠︎ ⚠︎ ⚠︎   Ｍ Ａ Ｒ Ｋ   ⚠︎ ⚠︎ ⚠︎   Ｍ Ａ Ｒ Ｋ   ⚠︎ ⚠︎ ⚠︎   Ｍ Ａ Ｒ Ｋ   ⚠︎ ⚠︎ ⚠︎  ",
     "default_bind" : None,
+    "debug" : False,
     "presets" : {
         "!" : '~b^r#y',
         "$" : '^lg#g',

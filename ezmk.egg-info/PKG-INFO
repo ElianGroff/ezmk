@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: ezmk
-Version: 1.0.0
+Version: 1.0.2
 Summary: Easy-to-use color coordination terminal library with simple custmization & function binding.
 Home-page: https://github.com/ElianGroff/ezmk
 Author: Elian Groff
@@ -24,7 +24,7 @@ Provides-Extra: test
 Requires-Dist: pytest; extra == "test"
 Requires-Dist: pytest-cov; extra == "test"
 
-# EZMK - Easy Mark
+# Easy Mark (ezmk)
 Easy-to-use color coordination terminal library with simple custmization & function binding.
 
 Use now with `pip install ezmk`
@@ -43,10 +43,10 @@ You can add multiple modifiers if you indicate their end with a space like `mark
 To print a simple and noticeable message to the console simply fire the `mark()` function without arguments.
 
 #### Text Foreground and Background Colors
-`black` â€¢ `red` â€¢ `green` â€¢ `yellow` â€¢ `blue` â€¢ `magenta` â€¢ `cyan` â€¢ `white` â€¢ `gray` â€¢ `light-red`/`lr` â€¢ `light-green`/`lg` â€¢ `light-yellow`/`ly` â€¢ `light-blue`/`lb` â€¢ `light-magenta`/`lm` â€¢ `light-cyan`/`lc` â€¢ `light-white`/`lw`
+`black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, `gray`, `light-red`/`lr`, `light-green`/`lg`, `light-yellow`/`ly`, `light-blue`/`lb`, `light-magenta`/`lm`, `light-cyan`/`lc`, `light-white`/`lw`
 
 #### Text Style Effects
-`bold`/`b` â€¢ `dim`/`d` â€¢ `italic`/`i` â€¢ `underline`/`u` â€¢ `blink`/`bl` â€¢ `reverse`/`r` â€¢ `hidden`/`r` â€¢ `strikethrough`/`r`
+`bold`/`b`, `dim`/`d`, `italic`/`i`, `underline`/`u`, `blink`/`bl`, `reverse`/`r`, `hidden`/`r`, `strikethrough`/`r`
 
 ## bind(func, activation_string, args=(args), kwargs=(kwargs))
 
@@ -63,6 +63,7 @@ You can specify presets in configuration, allowing you to use a key(activation s
 To configure, create `ezmk.cfg` file in the project directory. 
 
 - `ping:string` What's printed to the console when `mark()` when fired without any arguments.
+- `debug:bool` If set to true, print's to terminal the raw interpretation of each mark statement.
 - `presets:dict` Custom keys that load configured format modifiers. Defaults include(to change default either override or list in blacklist):
     - `!` as `~b^r#y`
     - `$` as `^lg#g`
