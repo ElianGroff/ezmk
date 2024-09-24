@@ -1,17 +1,18 @@
 # Easy Mark (ezmk)
 Easy-to-use color coordination terminal library with simple customization & function binding.
+
 ![image](https://github.com/user-attachments/assets/c89e9334-adce-444b-9b98-6c7a127e2206)
 
 Use now with `pip install ezmk`
 
 ## mark(string, **kwargs)
-Use the `mark()` as you would use the `print()` function but with the additional features of easy-to-add format modification. 
+Use the `mark()` function as you'd use the `print()` function but with the additional features of easy-to-add format modification. 
 
 Modify text color by prefixing your statement with `^`, followed by an appropriate color specification. 
 
 > Example `mark("^red This text is red!")` 
 
-Use the `#` key to specify the background color, and use the `~` key to specify styling such as bold, underline, or italic. Colors and styles autocomplete if identifying initial words are used like `mark("#r This text is also red!")`. 
+Use the `#` key to specify the background color, and use the `~` key to specify styling such as bold, underline, or italic. Colors and styles autocomplete if identifying initial words are used like `mark("#r This text's background is red!")`. 
 
 You can add multiple modifiers if you indicate their end with a space like `mark("#m^b~u working text!")`. Using `mark("#m ^b ~u failed text!")` will only interpret the first modifier. 
 
